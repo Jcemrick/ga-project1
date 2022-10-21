@@ -37,4 +37,6 @@ Fetch and display the current price of various crypto currencies
 
 #### Project Link
 [My Project Page](https://jcemrick.github.io/ga-project1/)
+
+
 [My Project GitHub](https://github.com/Jcemrick/ga-project1.git)
