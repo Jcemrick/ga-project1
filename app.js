@@ -13,13 +13,14 @@ const url = "https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest"
 
 // }
 
+const setHeader = $.ajaxSetup({
+  headers: { 'X-CMC_PRO_API_KEY' : '48856211-975f-4632-8ffc-4a957ee81283'}
+})
+
 $.ajax({
-  url: 'https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest',
+  url: 'https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',
   type: 'GET',
-  headers: {"X-CMC_PRO_API_KEY" : '48856211-975f-4632-8ffc-4a957ee81283'},
-  contentType: 'application/json',
-  success: function (data) {console.log("We've got data " + data)},
-  error: function (error) {
-    console.log("didnt work")
-  }
+  dataType: 'jsonp',
+  success: function () { alert("Success!")},
+  error: function (){ alert("Failed!")},
 })
