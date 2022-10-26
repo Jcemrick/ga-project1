@@ -1,9 +1,9 @@
-## Crypto Price Tracker
+## Random Card Game
 
 ***
 
 ##### The General Idea...
-Fetch and display the current price of various crypto currencies
+Fetch card data from Deck of Cards API and have two random cards compared to one another and the higher card wins the hand
 
 #### Languages and Resources Used
 
@@ -12,9 +12,7 @@ Fetch and display the current price of various crypto currencies
 - JavaScript
 - Various API libraries 
 
-#### Wireframe/Initial Design
 
-![wire frame page](https://i.imgur.com/UkTyoc2.png)
 
 #### To-do List
 
@@ -25,14 +23,14 @@ Fetch and display the current price of various crypto currencies
 
 | Incomplete |
 |------------|
- [ ]  Get approval for the project.
- [ ]  Get the initial layout of the HTML/JS established.
- [ ]  Link the API with the document.
- [ ]  Get search bar to display the proper input.
- [ ]  Have the site store a "portfolio".
+ [x]  Get approval for the project.
+ [x]  Get the initial layout of the HTML/JS established.
+ [x]  Link the API with the document.
+ [x]  Add deal button
+ [ ]  Add logic for winning and losing hands
  [ ]  Test the functionality of the site.
  [ ]  Spruce it up with CSS.
- [ ]  Add aditional functionality - price data, graphs, refresh?
+ [ ]  Add aditional functionality - score etc.
 
 
 #### Project Link
