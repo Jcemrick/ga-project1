@@ -13,34 +13,70 @@ header {
   text-align: center;
 }
 
+/* body {
+  column-count: ;
+  display: inline-flex;
+  justify-content: center;
+  flex-wrap: wrap;
+} */
+
 .container {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+  flex-wrap: wrap;
   background-image: url(../images/linen-texture-green-tones.jpg);
   background-size: cover;
   border: 1px solid black;
   height: 30rem;
-  width: 31rem;
+  width: 30rem;
   padding: 1rem;
   text-align: center;
   margin: auto;
 }
 
-#p2 {
-  
+#p1 {
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
+#p1container {
+  display: inline-flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  flex-wrap: wrap;
+  height: 15rem;
+  width: 30rem;
+}
 
 #onecard {
-  display: inline-block;
-  position: absolute;
-  vertical-align: middle;
+  display: inline-flex;
+}
+
+#p2 {
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#p2container {
+  display: inline-flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  flex-wrap: wrap;
+  height: 15rem;
+  width: 30rem;
 }
 
 #twocard {
-  display: inline-block;
-  position: absolute;
-  vertical-align: middle;
+  display: inline-flex;
 }
 
 #deal {
