@@ -8,6 +8,7 @@ const $twoCard = $('#twocard');
 const $oneScore = $('#onescore');
 const $twoScore = $('#twoscore');
 const $tieCount = $('#tiecount');
+const $gamesWon = $('#gameswon');
 
 
 
@@ -17,6 +18,7 @@ let oneWinTracker = 0;
 let twoWinTracker = 0;
 let tieCountTracker = 0;
 let count = 0;
+let gamesWon = 0;
 let cardImgOne;
 let cardImgTwo;
 
@@ -42,9 +44,11 @@ function gameReset() {
 function winScenarios(player1, player2) {
   if (player1 > player2) {
     alert("Player 1 Wins!");
+    gamesWon += 1
+    $gamesWon.text(gamesWon)
     gameReset();
   } else if (player1 < player2) {
-    alert("Player 2 Wins!");
+    alert("CPU Wins!");
     gameReset();
   } else if (player1 === player2){
     alert("Its a tie!");
@@ -54,7 +58,6 @@ function winScenarios(player1, player2) {
 
 // game logic
 function gameLogic(player1, player2) {
-  if (count <= 5) {
     if (player1 > player2) {
       oneWinTracker += 1;
       count += 1;
@@ -69,7 +72,6 @@ function gameLogic(player1, player2) {
       $tieCount.text(tieCountTracker)
     } 
   }
-}
 
 // button listener for deal
 $('button[id=deal]').on("click", (event) =>{
@@ -87,8 +89,8 @@ $('button[id=reset]').on("click", (event) => {
 // API call and game function
 function newGame() {
 
-  if (count >= 5) {
-    winScenarios()
+  if (count === 5) {
+    winScenarios(oneWinTracker, twoWinTracker)
     return
   }
 
