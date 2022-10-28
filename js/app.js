@@ -1,22 +1,96 @@
 // Constants and variables
 
 const BASE_URL = 'https://deckofcardsapi.com/api/deck/';
+
+// jquery html elements
 const $oneCard = $('#onecard');
 const $twoCard = $('#twocard');
 const $oneScore = $('#onescore');
 const $twoScore = $('#twoscore');
+const $tieCount = $('#tiecount');
+
 
 
 let playerOneDeck;
 let playerTwoDeck;
 let oneWinTracker = 0;
 let twoWinTracker = 0;
+let tieCountTracker = 0;
+let count = 0;
+let cardImgOne;
+let cardImgTwo;
 
 // html element variables
 const $deal = $("#deal");
 
-//function for retrieving the api data
+//functions
+
+// game reset function
+function gameReset() {
+  oneWinTracker = 0
+  twoWinTracker = 0
+  tieCountTracker = 0
+  count = 1
+  $tieCount.empty()
+  $oneScore.empty()
+  $twoScore.empty()
+  $oneCard.empty()
+  $twoCard.empty()
+}
+
+// win scenarios
+function winScenarios(player1, player2) {
+  if (player1 > player2) {
+    alert("Player 1 Wins!");
+    gameReset();
+  } else if (player1 < player2) {
+    alert("Player 2 Wins!");
+    gameReset();
+  } else if (player1 === player2){
+    alert("Its a tie!");
+    gameReset();
+  }
+}
+
+// game logic
+function gameLogic(player1, player2) {
+  if (count <= 5) {
+    if (player1 > player2) {
+      oneWinTracker += 1;
+      count += 1;
+      $oneScore.text(oneWinTracker)
+    } else if (player1 < player2) {
+      twoWinTracker += 1;
+      count += 1
+      $twoScore.text(twoWinTracker)
+    } else {
+      tieCountTracker += 1;
+      count += 1
+      $tieCount.text(tieCountTracker)
+    } 
+  }
+}
+
+// button listener for deal
+$('button[id=deal]').on("click", (event) =>{
+  event.preventDefault();
+  newGame();
+})
+
+// button listen for reset
+$('button[id=reset]').on("click", (event) => {
+  event.preventDefault()
+  gameReset();
+})
+
+
+// API call and game function
 function newGame() {
+
+  if (count >= 5) {
+    winScenarios()
+    return
+  }
 
   // api call with ajax for player one
   $.ajax(`${BASE_URL}new/shuffle/?deck_count=1`)
@@ -35,35 +109,23 @@ function newGame() {
     .then((drawCard) => {
       playerOneDraw = drawCard.cards[0].code;
       playerOneValue = drawCard.cards[0].value;
+      cardImgOne = drawCard.cards[0].image;
       // console.log(playerOneDraw);
       // console.log(playerOneValue);
-      $oneCard.text(playerOneDraw);
+      $oneCard.append(`<img src=${cardImgOne} alt='playing card' height=100px>`)
 
   // play 2 card draw
   $.ajax(`${BASE_URL}${playerTwoDeck}/draw/?count=1`)
     .then((drawCard) => {
       playerTwoDraw = drawCard.cards[0].code;
       playerTwoValue = drawCard.cards[0].value;
+      cardImgTwo = drawCard.cards[0].image;
       // console.log(playerTwoDraw);
       // console.log(playerTwoValue);
-      $twoCard.text(playerTwoDraw);
+      $twoCard.append(`<img src=${cardImgTwo} alt='playing card' height=100px>`)
 
-  // game logic for win/loss
-  function winScenario(player1, player2) {
-    if (player1 > player2){
-      console.log("Player 1 wins!");
-      oneWinTracker += 1;
-    } else if (player1 === player2) {
-      console.log("Its a tie!");
-    } else {
-      console.log("Player 2 wins!");
-      twoWinTracker += 1;
-    }
-    $oneScore.text(oneWinTracker)
-    $twoScore.text(twoWinTracker)
     // console.log(oneWinTracker, twoWinTracker)
-  }
-  winScenario(playerOneValue, playerTwoValue);
+    gameLogic(playerOneValue, playerTwoValue)
 
         }) // player 2 draw
       }) // player 1 draw
@@ -71,8 +133,4 @@ function newGame() {
   }) // api call for player 1
 } // main function
 
-// button listener for deal
-$('button[id=deal]').on("click", (event) =>{
-  event.preventDefault();
-  newGame();
-})
+
