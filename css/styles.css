@@ -8,13 +8,20 @@ body {
   background-color: #8d99ae;
 }
 
+img {
+  border-radius: 4px;
+  margin: 3px 3px 3px 3px;
+}
+
+#hands{
+  font-size: larger;
+}
 
 #score {
   border: 0px;
   margin: 0px;
   margin-left: 33%;
   text-align: left;
-
 }
 
 header {
