@@ -32,12 +32,14 @@ function gameReset() {
   oneWinTracker = 0
   twoWinTracker = 0
   tieCountTracker = 0
+  gamesWon = 0
   count = 1
   $tieCount.empty()
   $oneScore.empty()
   $twoScore.empty()
   $oneCard.empty()
   $twoCard.empty()
+  $gamesWon.empty()
 }
 
 // win scenarios
