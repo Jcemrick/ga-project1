@@ -32,6 +32,18 @@ function gameReset() {
   oneWinTracker = 0
   twoWinTracker = 0
   tieCountTracker = 0
+  count = 1
+  $tieCount.empty()
+  $oneScore.empty()
+  $twoScore.empty()
+  $oneCard.empty()
+  $twoCard.empty()
+}
+
+function gameResetBt() {
+  oneWinTracker = 0
+  twoWinTracker = 0
+  tieCountTracker = 0
   gamesWon = 0
   count = 1
   $tieCount.empty()
@@ -84,7 +96,7 @@ $('button[id=deal]').on("click", (event) =>{
 // button listen for reset
 $('button[id=reset]').on("click", (event) => {
   event.preventDefault()
-  gameReset();
+  gameResetBt();
 })
 
 
